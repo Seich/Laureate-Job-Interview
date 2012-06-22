@@ -8,13 +8,15 @@
  *
  */
 
-//(function(){
+(function(){
   var turn = true;
 
   var board = {
     // Grab the canvas and initialize the board.
     init: function() {
       this.canvas = document.getElementById('board');
+      this.restartButton = document.getElementById('restart');
+      this.newButton = document.getElementById('new');
 
       // Drawing context.
       this.c = this.canvas.getContext('2d');
@@ -42,6 +44,18 @@
 
       // Attach click events
       this.canvas.addEventListener('click', this.clickEvent, false);
+      this.restartButton.addEventListener('click', this.clickRestart, false);
+      this.newButton.addEventListener('click', this.clickNew, false);
+    },
+
+    clickNew: function(e) {
+      board.init();
+      document.getElementById("X").innerHTML = 0;
+      document.getElementById("O").innerHTML = 0;
+    },
+
+    clickRestart: function(e) {
+      board.init();
     },
    
     // Handle the Board's click event.
@@ -130,6 +144,7 @@
 
       if (victory) {
         alert(player + " won.");
+        this.addPoint(player);
         this.init();
         return;
       }
@@ -144,6 +159,7 @@
       
       if (victory) {
         alert(player + " won.");
+        this.addPoint(player);
         this.init();
         return;
       }
@@ -159,6 +175,7 @@
 
         if (victory) {
           alert(player + " won.");
+          this.addPoint(player);
           this.init();
           return;
         }
@@ -175,6 +192,7 @@
 
         if (victory) {
           alert(player + " won.");
+          this.addPoint(player);
           this.init();
           return;
         }
@@ -196,6 +214,10 @@
         }
       }
       return true;
+    },
+
+    addPoint: function(player) {
+      document.getElementById(player).innerHTML = parseInt(document.getElementById(player).innerHTML) + 1;
     },
 
     // Draw an 'x' on the given sector.
@@ -254,4 +276,4 @@
   };
 
   board.init();
-//})();
+})();

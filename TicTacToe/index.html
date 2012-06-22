@@ -14,9 +14,21 @@
    <link rel="stylesheet" href="./screen.css" media="screen">
 </head>
 <body>
+  <div id="score">
+    X - <span id="X">0</span> | O - <span id="O">0</span>
+  </div>
+
+
   <canvas id="board" width="500" height="500">
     Su explorador no es soportado.
   </canvas>
+
+  <div id="controls">
+    <button id="restart">Reiniciar Partida</button>
+    <button id="new">Nuevo Juego</button>
+  </div>
+  
+  <script src="excanvas.min.js"></script>
   <script src="tictactoe.js"></script>
 </body>
 </html>
