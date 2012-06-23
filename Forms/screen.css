@@ -2,15 +2,15 @@ body {
     background: #aaa url(images/bg.png);
     color: #222;
     font-family: sans-serif;
-    margin: 100px auto;
+    margin: 50px auto;
     width: 400px;
 }
 
 form {
-    -webkit-box-shadow: 0 0 5px #000;
     background: #252123 url(images/formbg.png);
     border-radius: 3px;
     border: 1px solid #151515;
+    -webkit-box-shadow: 0 0 5px #000;
     box-shadow: 0 0 5px #000;
 }
 
@@ -27,9 +27,9 @@ h1 {
 
 hr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid #000;
     border-left: none;
     border-right: none;
+    border-top: 1px solid #000;
 }
 
 label,input {
@@ -61,18 +61,24 @@ input:focus {
 }
 
 input[type=submit] {
-    width: 25%;
-    display: inline;
+    background: #b37c3b;
+    background: -moz-linear-gradient(center top, #b37c3b 5%, #9b622b 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b37c3b), color-stop(1, #9b622b));
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #111;
+    color:#ffffff;
     margin-top: 1em;
-    margin-right: 1em;
+    text-shadow: 1px 1px 0px #523009;
+    width: 25%;
 }
 
-a {
-    color: #909BAC;
-    text-decoration: none;
+input[type=submit]:hover {
+    background: #b37c3b;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #fff;
+input[type=submit]:active {
+    background: #9b622b;
+    box-shadow: none;
 }

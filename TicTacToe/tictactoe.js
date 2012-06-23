@@ -15,6 +15,8 @@ window.onload = function() {
   var board = {
     // Grab the canvas and initialize the board.
     init: function() {
+      turn = true;
+
       this.canvas = document.getElementById('board');
       this.restartButton = document.getElementById('restart');
       this.newButton = document.getElementById('new');
