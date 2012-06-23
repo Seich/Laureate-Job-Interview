@@ -8,7 +8,8 @@
  *
  */
 
-(function(){
+window.onload = function() {
+  (function(){
   var turn = true;
 
   var board = {
@@ -43,9 +44,15 @@
       this.c.fillStyle = "black";
 
       // Attach click events
-      this.canvas.addEventListener('click', this.clickEvent, false);
-      this.restartButton.addEventListener('click', this.clickRestart, false);
-      this.newButton.addEventListener('click', this.clickNew, false);
+      if (document.addEventListener) {
+        this.canvas.addEventListener('click', this.clickEvent, false);
+        this.restartButton.addEventListener('click', this.clickRestart, false);
+        this.newButton.addEventListener('click', this.clickNew, false);
+      } else {
+        this.canvas.attachEvent('onclick', this.clickEvent, false);
+        this.restartButton.attachEvent('onclick', this.clickRestart, false);
+        this.newButton.attachEvent('onclick', this.clickNew, false);
+      }
     },
 
     clickNew: function(e) {
@@ -277,3 +284,4 @@
 
   board.init();
 })();
+}
