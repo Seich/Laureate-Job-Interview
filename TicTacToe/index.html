@@ -11,7 +11,8 @@
 <head>
   <meta charset="UTF-8">
   <title>TicTacToe</title>
-   <link rel="stylesheet" href="./screen.css" media="screen">
+   <link rel="stylesheet" href="screen.css" media="screen">
+   <!--[if IE]><script src="excanvas.min.js"></script><![endif]-->
 </head>
 <body>
   <div id="score">
@@ -24,11 +25,10 @@
   </canvas>
 
   <div id="controls">
-    <button id="restart">Reiniciar Partida</button>
-    <button id="new">Nuevo Juego</button>
+    <button id="restart">Restart Match</button>
+    <button id="new">New Game</button>
   </div>
   
-  <script src="excanvas.min.js"></script>
   <script src="tictactoe.js"></script>
 </body>
 </html>
