@@ -1,80 +1,78 @@
 body {
-    font-family: sans-serif;
+    background: #aaa url(images/bg.png);
     color: #222;
-    width: 400px;
+    font-family: sans-serif;
     margin: 100px auto;
-    background: #aaa;
+    width: 400px;
 }
 
 form {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px #000;
+    background: #252123 url(images/formbg.png);
+    border-radius: 3px;
+    border: 1px solid #151515;
+    box-shadow: 0 0 5px #000;
+}
+
+form div {
     padding: 1em;
-    box-shadow: 0 0 10px #000;
 }
 
 h1 {
-    border-bottom: 1px solid #ccc;
+    color: #D6AD7C;
+    font-weight: normal;
+    margin: 0;
+    text-shadow: 1px 1px 0 black;
 }
 
-label, input {
+hr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid #000;
+    border-left: none;
+    border-right: none;
+}
+
+label,input {
     display: block;
 }
 
 label {
-    margin-top: 1em;
+    color: #9EACA7;
+    margin-top: 1.1em;
+    text-shadow: 1px 1px 0 black;
 }
 
 input {
-    width: 100%;
-    height: 30px;
-    border: 1px solid #aaa;
+    background: #1d1d1d;
     border-radius: 3px;
+    border: 1px solid #0a0a0a;
+    -webkit-box-shadow: 0 0 10px #111 inset;
+    box-shadow: 0 0 10px #111 inset;
+    color: #ccc;
+    font-weight: bold;
+    height: 30px;
+    padding: 0 10px;
+    width: 70%;
 }
 
 input:focus {
-    box-shadow: 0 0 10px cyan;
+    background: #141414;
+    outline: 1px solid #111;
 }
 
 input[type=submit] {
+    width: 25%;
+    display: inline;
     margin-top: 1em;
-    width: 20%;
-    background-color: #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
-    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: linear-gradient(top, #eeeeee, #cccccc);
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #bbb;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    color: #333;
-    font-weight: bold;
-    font-size: 11px;
-    padding: 8px;
-    text-align: center;
-    text-shadow: 0 1px 0 #eee;
+    margin-right: 1em;
 }
 
-input[type=submit]:hover {
-    background-color: #dddddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
-    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: linear-gradient(top, #dddddd, #bbbbbb);
-    cursor: pointer;
-    text-shadow: 0 1px 0 #ddd; 
+a {
+    color: #909BAC;
+    text-decoration: none;
 }
 
-input[type=submit]:active {
-    border: 1px solid #aaa;
-    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; 
+a:hover {
+    text-decoration: underline;
+    color: #fff;
 }
