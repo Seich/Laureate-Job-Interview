@@ -1,3 +1,13 @@
+/*
+ *   __  ____        ______  ____  
+ *  |  \/  \ \      / /  _ \/ ___| 
+ *  | |\/| |\ \ /\ / /| |_) \___ \ 
+ *  | |  | | \ V  V / |  __/ ___) |
+ *  |_|  |_|  \_/\_/  |_|   |____/ 
+ *  Martian Wabbit Productions (c) All Rights Reserved 2012.
+ *
+ */
+ 
 body {
   width: 500px;
   margin: 0 auto;
@@ -47,7 +57,7 @@ div#controls button:hover {
   background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
   background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
   background-image: linear-gradient(top, #dddddd, #bbbbbb);
-  -image cursor: pointer;
+  cursor: pointer;
   text-shadow: 0 1px 0 #ddd;
 }
 

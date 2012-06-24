@@ -1,3 +1,13 @@
+/*
+ *   __  ____        ______  ____  
+ *  |  \/  \ \      / /  _ \/ ___| 
+ *  | |\/| |\ \ /\ / /| |_) \___ \ 
+ *  | |  | | \ V  V / |  __/ ___) |
+ *  |_|  |_|  \_/\_/  |_|   |____/ 
+ *  Martian Wabbit Productions (c) All Rights Reserved 2012.
+ *
+ */
+
 (function(){
     var email = document.getElementById('email');
     var username = document.getElementById('name');
