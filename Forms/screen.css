@@ -39,6 +39,12 @@ label {
     text-shadow: 1px 1px 0 black;
 }
 
+label p {
+    text-shadow: none;
+    font-weight: 400;
+    color: #d32d2d;
+}
+
 input {
     background: #1d1d1d;
     border-radius: 3px;
@@ -80,6 +86,6 @@ input[type=submit]:active {
     box-shadow: none;
 }
 
-.error {
-    border: 1px solid red;
+.error label {
+    border: 1px solid #d32d2d;
 }

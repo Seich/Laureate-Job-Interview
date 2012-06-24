@@ -4,9 +4,8 @@ var lambda = function(id) {
         this.elem = document.getElementById(id);    
     } else {
         return new lambda(id);
-    }
-    
- }
+    }  
+ };
 
 // Instance Methods
 lambda.prototype = {
@@ -42,7 +41,7 @@ lambda.prototype = {
     hasClass: function(className) {
         return this.elem.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)')) != null;
     }
-}
+};
 
 // Static methods.
 lambda.trim = function (str) {
@@ -51,4 +50,4 @@ lambda.trim = function (str) {
     	i = str.length;
     while (ws.test(str.charAt(--i)));
         return str.slice(0, i + 1);
-}
+};
