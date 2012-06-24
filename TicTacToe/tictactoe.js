@@ -9,13 +9,11 @@
  */
 
 window.onload = function() {
-  (function(){
-  var turn = true;
-
   var board = {
+    turn: true,
     // Grab the canvas and initialize the board.
     init: function() {
-      turn = true;
+      board.turn = true;
 
       this.canvas = document.getElementById('board');
       this.restartButton = document.getElementById('restart');
@@ -57,6 +55,7 @@ window.onload = function() {
       }
     },
 
+    // Empty the board and reset the scores.
     clickNew: function(e) {
       board.init();
       document.getElementById("X").innerHTML = 0;
@@ -64,6 +63,7 @@ window.onload = function() {
       document.getElementById('t').innerHTML = 0;
     },
 
+    // Empty the board
     clickRestart: function(e) {
       board.init();
     },
@@ -94,7 +94,7 @@ window.onload = function() {
         return;
       }
 
-      if (turn) {
+      if (board.turn) {
         board.drawX(sector);
         board.boardMatrix[sector.x - 1][sector.y - 1] = 'X';
       } else {
@@ -102,11 +102,11 @@ window.onload = function() {
         board.boardMatrix[sector.x - 1][sector.y - 1] = 'O';
       }
       
+      // Change player.
+      board.turn = !board.turn;
+
       // Check if the game ended.
       board.gameEnded(sector);
-
-      // Change player.
-      turn = !turn;
     },
     
     // Get the sector in which x and y are positioned.
@@ -138,8 +138,7 @@ window.onload = function() {
      return {x: sx, y: sy};
     },
 
-    // Check the board to see if the game has ended already.
-    gameEnded: function(sector) {
+    victory: function(sector) {
       sector.x--;
       sector.y--;
       var player = this.boardMatrix[sector.x][sector.y];
@@ -153,10 +152,7 @@ window.onload = function() {
       }
 
       if (victory) {
-        alert(player + " ha ganado.");
-        this.addPoint(player);
-        this.init();
-        return;
+        return 1;
       }
 
       victory = true;
@@ -168,10 +164,7 @@ window.onload = function() {
       }
       
       if (victory) {
-        alert(player + " ha ganado.");
-        this.addPoint(player);
-        this.init();
-        return;
+        return 1;
       }
 
       // Check first diagonal "\"
@@ -184,10 +177,7 @@ window.onload = function() {
         }
 
         if (victory) {
-          alert(player + " ha ganado.");
-          this.addPoint(player);
-          this.init();
-          return;
+          return 1;
         }
       }
 
@@ -201,18 +191,33 @@ window.onload = function() {
         }
 
         if (victory) {
-          alert(player + " ha ganado.");
-          this.addPoint(player);
-          this.init();
-          return;
+          return 1;
         }
       }
 
       if (this.boardFull()) {
+        return 2;
+      }
+
+      return -1;
+    },
+
+    // Check the board to see if the game has ended already.
+    gameEnded: function(sector) {
+      var player = this.boardMatrix[sector.x - 1][sector.y - 1];
+      var victory = this.victory(sector);
+
+      if (victory == 1) {
+        alert(player + " ha ganado.");
+        this.addPoint(player);
+        this.init();
+        return;
+      }
+
+      if (victory == 2) {
         alert("Empate.");
         this.init();
-        var t = document.getElementById('t');
-        t.innerHTML = parseInt(t.innerHTML) + 1;
+        this.addPoint('t');
         return;
       }
     },
@@ -288,5 +293,4 @@ window.onload = function() {
   };
 
   board.init();
-})();
 }
