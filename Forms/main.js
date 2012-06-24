@@ -7,14 +7,18 @@ var phone = document.getElementById('phone');
 var submitButton = document.getElementById('submit');
 
 function addClass(elem, className) {
-    elem.className += ' ' + className;
-    elem.className = trim(elem.className);
+    if (!hasClass(elem, className)) {
+        elem.className += ' ' + className;
+        elem.className = trim(elem.className);   
+    }
 }
 
 function removeClass(elem, className) {
-    var regex = new RegExp('(\\s|^)' + className + '(\\s|$)');
-    elem.className = elem.className.replace(regex, ' ');
-    elem.className = trim(elem.className);
+    if (hasClass(elem, className)) {
+        var regex = new RegExp('(\\s|^)' + className + '(\\s|$)');
+        elem.className = elem.className.replace(regex, ' ');
+        elem.className = trim(elem.className);
+    }
 }
 
 function hasClass(elem, className) {
@@ -29,6 +33,20 @@ function trim(str) {
     return str.slice(0, i + 1);
 }
 
+function addMessage(elem, msg) {
+    if (elem.parentNode.childElementCount == 1) {
+        var p = document.createElement('p');
+        p.innerHTML = msg;
+        elem.parentNode.appendChild(p);
+    }
+}
+
+function removeMessage(elem) {
+    if (elem.parentNode.childElementCount == 2) {
+        elem.parentNode.removeChild(elem.parentNode.children[1])
+    }
+}
+
 if (document.addEventListener) {
     submitButton.addEventListener('click', formSubmit, false);
 } else {
@@ -40,46 +58,27 @@ function formSubmit(e) {
     // Validate Email.
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!regex.test(email.value)) {
-        if (!hasClass(email.parentNode, 'error')) {
-            addClass(email.parentNode, 'error');
-            if (email.parentNode.childElementCount == 1) {
-                var p = document.createElement('p');
-                p.innerHTML = "El correo electronico ingresado no es valido.";
-                email.parentNode.appendChild(p);
-            }
-        }
+        addClass(email.parentNode, 'error');
+        addMessage(email, 'El correo electronico ingresado no es valido.');
     } else {
-        if (hasClass(email.parentNode, 'error')) {
-            removeClass(email.parentNode, 'error');
-            if (email.parentNode.childElementCount == 2) {
-                email.parentNode.removeChild(email.parentNode.children[1])
-            }
-        }
+        removeClass(email.parentNode, 'error');
+        removeMessage(email);
     }
     
     // Validate empty fields
-    var fields = [username, surname, phone];
-    for (i = 0; i < 3; i++) {
+    var fields = [username, surname, phone, password, password2];
+    for (i = 0; i < 5; i++) {
         if (!fields[i].value) {
-            if (!hasClass(fields[i].parentNode, 'error')) {
-                addClass(fields[i].parentNode, 'error');
-                if (fields[i].parentNode.childElementCount == 1) {
-                    var p = document.createElement('p');
-                    p.innerHTML = "Este campo no puede estar en blanco.";
-                    fields[i].parentNode.appendChild(p);
-                }
-            }
+            addClass(fields[i].parentNode, 'error');
+            addMessage(fields[i], 'Este campo no puede estar en blanco');
         } else {
-            if (hasClass(fields[i].parentNode, 'error')) {
-                removeClass(fields[i].parentNode, 'error');
-                if (fields[i].parentNode.childElementCount == 2) {
-                    fields[i].parentNode.removeChild(fields[i].parentNode.children[1])
-                }
-            }
+            removeClass(fields[i].parentNode, 'error');
+            removeMessage(fields[i]);
         }
     }
     
-    
+    // Validate Email fields
+ 
     
     e.preventDefault();
 }
