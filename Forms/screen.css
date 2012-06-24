@@ -86,6 +86,6 @@ input[type=submit]:active {
     box-shadow: none;
 }
 
-.error label {
+.error input {
     border: 1px solid #d32d2d;
 }

@@ -1,46 +1,60 @@
 // Form Errors
 var errors;
+var fields;
 
-var email = lambda('email');
-var username = lambda('name');
-var surname = lambda('surname');
-var password = lambda('password');
-var password2 = lambda('password2');
-var phone = lambda('phone');
-var submitButton = lambda('submit');
+var email = document.getElementById('email');
+var username = document.getElementById('name');
+var surname = document.getElementById('surname');
+var password = document.getElementById('password');
+var password2 = document.getElementById('password2');
+var phone = document.getElementById('phone');
+var submitButton = document.getElementById('submit');
 
-submitButton.click(formSubmit);
+function addClass(elem, className) {
+    elem.className += ' ' + className;
+    elem.className = lambda.trim(elem.className);
+}
+
+function removeClass(elem, className) {
+    var regex = new RegExp('(\\s|^)' + className + '(\\s|$)');
+    elem.className = elem.className.replace(regex, ' ');
+    elem.className = lambda.trim(elem.className);
+}
+
+function hasClass(elem, className) {
+    return elem.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)')) != null;
+}
+
+if (document.addEventListener) {
+    submitButton.addEventListener('click', formSubmit, false);
+} else {
+    submitButton.attachEvent('onclick', formSubmit, false);
+}
 
 function formSubmit(e) {
     errors = [];
-
-    if (beta.addClassIfNotValid('email', email, 'error')) {
-        errors.push('The entered email is not valid.');
+    
+    // Validate Email.
+    var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!regex.test(email.value)) {
+        if (!hasClass(email.parentNode, 'error'))
+            addClass(email.parentNode, 'error');
+    } else {
+        if (hasClass(email.parentNode, 'error'))
+            removeClass(email.parentNode, 'error');
     }
     
-    if (beta.addClassIfEmpty(username, 'error')) {
-        errors.push('Please enter a name.');
+    // Validate empty fields
+    fields = [username, surname, phone];
+    for (i = 0; i < 3; i++) {
+        if (!fields[i].value) {
+            if (!hasClass(fields[i].parentNode, 'error'))
+                addClass(fields[i].parentNode, 'error');
+        } else {
+            if (hasClass(fields[i].parentNode, 'error'))
+                removeClass(fields[i].parentNode, 'error');
+        }
     }
     
-	if (beta.addClassIfEmpty(surname, 'error')) {
-    	errors.push('Please enter a last name.');
-	}
-	
-	if (beta.addClassIfNotEqual(password, password2, 'error')) {
-    	errors.push('The passwords do not match.');
-	}
-	
-	if (beta.addClassIfEmpty(password, 'error')) {
-    	errors.push('Please enter a Password.');
-	}
-	
-	if (beta.addClassIfEmpty(password2, 'error')) {
-    	errors.push('Please confirm your password.');
-	}
-	
-	if (beta.addClassIfEmpty(phone, 'error')) {
-    	errors.push('Please enter a phone number');
-	}
-	
     e.preventDefault();
 }
