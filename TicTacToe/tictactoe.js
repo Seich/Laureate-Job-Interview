@@ -61,6 +61,7 @@ window.onload = function() {
       board.init();
       document.getElementById("X").innerHTML = 0;
       document.getElementById("O").innerHTML = 0;
+      document.getElementById('t').innerHTML = 0;
     },
 
     clickRestart: function(e) {
@@ -152,7 +153,7 @@ window.onload = function() {
       }
 
       if (victory) {
-        alert(player + " won.");
+        alert(player + " ha ganado.");
         this.addPoint(player);
         this.init();
         return;
@@ -167,7 +168,7 @@ window.onload = function() {
       }
       
       if (victory) {
-        alert(player + " won.");
+        alert(player + " ha ganado.");
         this.addPoint(player);
         this.init();
         return;
@@ -183,7 +184,7 @@ window.onload = function() {
         }
 
         if (victory) {
-          alert(player + " won.");
+          alert(player + " ha ganado.");
           this.addPoint(player);
           this.init();
           return;
@@ -200,7 +201,7 @@ window.onload = function() {
         }
 
         if (victory) {
-          alert(player + " won.");
+          alert(player + " ha ganado.");
           this.addPoint(player);
           this.init();
           return;
@@ -208,8 +209,10 @@ window.onload = function() {
       }
 
       if (this.boardFull()) {
-        alert("Tie.");
+        alert("Empate.");
         this.init();
+        var t = document.getElementById('t');
+        t.innerHTML = parseInt(t.innerHTML) + 1;
         return;
       }
     },
