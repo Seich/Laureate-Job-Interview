@@ -44,8 +44,8 @@
         return str.slice(0, i + 1);
     }
     
-    function addMessage(elem, msg) {
-        if (elem.parentNode.childElementCount == 1) {
+    function addMessage(elem, msg) {        
+        if (elem.parentNode.children.length == 1) {
             var p = document.createElement('p');
             p.innerHTML = msg;
             elem.parentNode.appendChild(p);
@@ -53,7 +53,7 @@
     }
     
     function removeMessage(elem) {
-        if (elem.parentNode.childElementCount == 2) {
+        if (elem.parentNode.children.length == 2) {
             elem.parentNode.removeChild(elem.parentNode.children[1])
         }
     }
@@ -65,7 +65,8 @@
     }
     
     function formSubmit(e) {
-        e.preventDefault();
+        // prevent default event on ie8 and standard browsers.
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
         
         // Validate Email.
         var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -104,7 +105,7 @@
             removeMessage(password2);
         }
         
-        if (document.getElementsByClassName('error').length == 0) {
+        if (document.querySelectorAll('.error').length == 0) {
             alert("Se ha registrado exitosamente.");
         }    
     }
