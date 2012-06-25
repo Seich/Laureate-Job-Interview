@@ -29,6 +29,7 @@ window.onload = function() {
       this.boardMatrix = [['-', '-', '-'],
                           ['-', '-', '-'],
                           ['-', '-', '-']];
+
       // Set draw color to gray.
       this.c.fillStyle = "gray";
 
